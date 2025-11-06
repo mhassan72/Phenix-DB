@@ -1,51 +1,62 @@
-# Rust Vector Database
+# Phenix DB — Unified Vector + Document + Graph Database
 
-A production-ready, transactional, sharded vector database implemented in Rust designed for high-performance similarity search at scale.
+A production-ready, transactional, sharded database implemented in Rust that unifies vectors, documents, and graph relationships under one ACID engine.
 
 ## Features
 
-### 🚀 Performance
-- **Sub-millisecond query latency** for billions of vectors
+### 🔄 Unified Data Model
+- **Single transactional surface** for vectors, documents, and graph relationships
+- **Entity-first design** with optional vector, metadata (JSONB), and edges
+- **Unified query planning** combining vector similarity, metadata filters, and graph traversal
+- **Eliminates dual-write complexity** between separate vector and document stores
+
+### 🚀 Performance at Scale
+- **Sub-millisecond query latency** for billions of entities
+- **100B+ vector capacity** with intelligent hot/cold tiering
 - **SIMD and AVX optimizations** for vector operations
 - **GPU acceleration** support where available
-- **Pipeline parallelism** for vector processing
-- **Hybrid HNSW/IVF-PQ indexing** for optimal search performance
+- **Pipeline parallelism** for entity processing
+- **Hybrid HNSW/IVF-PQ indexing** with metadata co-location
 
-### 🔒 ACID Guarantees
-- **Full ACID compliance** with distributed transactions
+### 🔒 ACID Guarantees Across All Data Types
+- **Full ACID compliance** for vector + metadata + edge operations
 - **MVCC (Multi-Version Concurrency Control)** for snapshot isolation
-- **Write-Ahead Log (WAL)** for durability and crash recovery
+- **Write-Ahead Log (WAL)** with signed entries for integrity
 - **Two-phase commit protocol** for cross-shard transactions
+- **Consistent reads** across vectors, documents, and relationships
 
 ### 📈 Horizontal Scaling
-- **Automatic shard distribution** using consistent hashing
+- **Automatic entity distribution** using consistent hashing
 - **Dynamic shard rebalancing** without service interruption
-- **Query routing** with parallel execution across shards
+- **Unified query routing** with parallel execution across shards
 - **Automatic failover** and replica management
+- **Multi-tenant isolation** with per-tenant encryption
 
-### 💾 Multi-Tiered Storage
-- **Hot tier**: RAM and NVMe for frequently accessed vectors
-- **Cold tier**: Object storage with 70%+ compression
-- **Intelligent caching** with LRU/LFU policies
-- **Automatic promotion/demotion** based on access patterns
+### 💾 Intelligent Multi-Tiered Storage
+- **Hot tier**: RAM and NVMe for frequently accessed entities and indexes
+- **Cold tier**: Object storage with 70%+ compression using PQ/OPQ
+- **Chunked storage**: 1M entities per block with lazy decompression
+- **Smart caching** with LRU/LFU policies across all data types
+- **Automatic promotion/demotion** based on unified access patterns
 
 ### 🛡️ Security & Safety
 - **Memory safety** through Rust's ownership system
-- **End-to-end encryption** (AES-GCM, ChaCha20-Poly1305)
-- **Per-tenant encryption keys** for multi-tenant deployments
-- **Compile-time safety checks** preventing memory leaks
+- **Envelope encryption** with per-tenant DEK + KMS CMK
+- **Signed WAL and snapshots** for integrity verification
+- **mTLS for internal comms**, TLS1.3 for client-facing
+- **RBAC enforcement** at all API and management layers
 
 ### 🌐 Flexible Deployment
-- **Kubernetes** with StatefulSets and HPA integration
+- **Kubernetes**: StatefulSets for shard nodes, Deployments for stateless components
 - **Docker Swarm** with service-based architecture
-- **Single container** mode for edge and testing
-- **Cloud-native** design with persistent volume support
+- **Single container** mode for edge computing and testing
+- **Cloud-native** design with object storage integration (S3/MinIO)
 
-### 📊 Comprehensive Observability
-- **Prometheus metrics** for monitoring and alerting
-- **OpenTelemetry tracing** for distributed request tracking
-- **Structured logging** with correlation IDs
-- **Health checks** and fault tolerance
+### 📊 Enterprise Observability
+- **Prometheus metrics** with custom collectors for hybrid queries
+- **OpenTelemetry tracing** with correlation IDs across distributed operations
+- **Structured JSON logging** with tenant and shard identifiers
+- **Comprehensive alerting** for WAL lag, replication, and SLA violations
 
 ## Quick Start
 
@@ -59,8 +70,8 @@ A production-ready, transactional, sharded vector database implemented in Rust d
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/rust-vector-database.git
-cd rust-vector-database
+git clone https://github.com/mhassan72/Rust-Vector-Database.git
+cd Rust-Vector-Database
 
 # Build the project
 cargo build --release
@@ -80,8 +91,8 @@ cargo bench
 cargo run --bin server
 
 # Or using Docker
-docker build -t vector-db .
-docker run -p 8080:8080 -p 9090:9090 vector-db
+docker build -t phenix-db .
+docker run -p 8080:8080 -p 9090:9090 phenix-db
 ```
 
 #### Kubernetes Deployment
@@ -99,7 +110,7 @@ kubectl logs -f deployment/vector-db-manager
 #### Docker Swarm Deployment
 ```bash
 # Deploy using Docker Compose
-docker stack deploy -c docker/docker-compose.yml vector-db
+docker stack deploy -c docker/docker-compose.yml phenix-db
 
 # Check service status
 docker service ls
@@ -110,27 +121,37 @@ docker service ls
 ### gRPC API
 
 ```rust
-use vector_db_client::VectorDatabaseClient;
+use phenix_db_client::PhenixDBClient;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let mut client = VectorDatabaseClient::connect("http://localhost:9090").await?;
+    let mut client = PhenixDBClient::connect("http://localhost:9090").await?;
     
-    // Insert vectors
-    let vectors = vec![
-        Vector::new(vec![0.1, 0.2, 0.3, 0.4]),
-        Vector::new(vec![0.5, 0.6, 0.7, 0.8]),
+    // Insert unified entities (vector + metadata + edges)
+    let entities = vec![
+        Entity::new()
+            .with_vector(vec![0.1, 0.2, 0.3, 0.4])
+            .with_metadata(json!({"title": "Document 1", "category": "tech"}))
+            .with_edge("related_to", "entity_2", 0.8),
+        Entity::new()
+            .with_vector(vec![0.5, 0.6, 0.7, 0.8])
+            .with_metadata(json!({"title": "Document 2", "category": "science"})),
     ];
     
-    let response = client.insert_vectors(vectors).await?;
-    println!("Inserted {} vectors", response.count);
+    let response = client.upsert_entities(entities).await?;
+    println!("Upserted {} entities", response.count);
     
-    // Query similar vectors
-    let query = Vector::new(vec![0.1, 0.2, 0.3, 0.4]);
-    let results = client.query_similar(query, 10).await?;
+    // Unified query: vector similarity + metadata filter + graph traversal
+    let query = UnifiedQuery::new()
+        .with_vector_similarity(vec![0.1, 0.2, 0.3, 0.4], 10)
+        .with_metadata_filter(json!({"category": "tech"}))
+        .with_graph_constraint("related_to:entity_2");
     
-    for result in results.vectors {
-        println!("Vector ID: {}, Similarity: {}", result.id, result.similarity);
+    let results = client.hybrid_query(query).await?;
+    
+    for result in results.entities {
+        println!("Entity ID: {}, Score: {}, Metadata: {:?}", 
+                 result.id, result.score, result.metadata);
     }
     
     Ok(())
@@ -140,22 +161,35 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 ### REST API
 
 ```bash
-# Insert vectors
-curl -X POST http://localhost:8080/vectors \
+# Insert unified entities
+curl -X POST http://localhost:8080/entities \
   -H "Content-Type: application/json" \
   -d '{
-    "vectors": [
-      {"id": "vec1", "dimensions": [0.1, 0.2, 0.3, 0.4]},
-      {"id": "vec2", "dimensions": [0.5, 0.6, 0.7, 0.8]}
+    "entities": [
+      {
+        "id": "entity1",
+        "vector": [0.1, 0.2, 0.3, 0.4],
+        "metadata": {"title": "Document 1", "category": "tech"},
+        "edges": [{"target": "entity2", "label": "related_to", "weight": 0.8}]
+      },
+      {
+        "id": "entity2", 
+        "vector": [0.5, 0.6, 0.7, 0.8],
+        "metadata": {"title": "Document 2", "category": "science"}
+      }
     ]
   }'
 
-# Query similar vectors
+# Unified hybrid query
 curl -X POST http://localhost:8080/query \
   -H "Content-Type: application/json" \
   -d '{
-    "vector": [0.1, 0.2, 0.3, 0.4],
-    "k": 10
+    "vector_similarity": {
+      "vector": [0.1, 0.2, 0.3, 0.4],
+      "k": 10
+    },
+    "metadata_filter": {"category": "tech"},
+    "graph_constraint": "related_to:entity2"
   }'
 ```
 
@@ -163,11 +197,11 @@ curl -X POST http://localhost:8080/query \
 
 Official SDKs are planned for multiple programming languages (coming after core database development):
 
-- **Rust**: `cargo add vector-db-client` *(planned)*
-- **Python**: `pip install vector-db-python` *(planned)*
-- **Go**: `go get github.com/your-org/vector-db-go` *(planned)*
-- **JavaScript/Node.js**: `npm install vector-db-js` *(planned)*
-- **Ruby**: `gem install vector-db-ruby` *(planned)*
+- **Rust**: `cargo add phenix-db-client` *(planned)*
+- **Python**: `pip install phenix-db-python` *(planned)*
+- **Go**: `go get github.com/mhassan72/phenix-db-go` *(planned)*
+- **JavaScript/Node.js**: `npm install phenix-db-js` *(planned)*
+- **Ruby**: `gem install phenix-db-ruby` *(planned)*
 
 For now, you can interact with the database directly through the gRPC and REST APIs.
 
@@ -177,27 +211,32 @@ For now, you can interact with the database directly through the gRPC and REST A
 
 ```bash
 # Server configuration
-VECTOR_DB_HOST=0.0.0.0
-VECTOR_DB_GRPC_PORT=9090
-VECTOR_DB_HTTP_PORT=8080
+PHENIX_DB_HOST=0.0.0.0
+PHENIX_DB_GRPC_PORT=9090
+PHENIX_DB_HTTP_PORT=8080
 
 # Storage configuration
-VECTOR_DB_HOT_TIER_SIZE=10GB
-VECTOR_DB_COLD_TIER_ENDPOINT=s3://bucket/path
-VECTOR_DB_COMPRESSION_ENABLED=true
+PHENIX_DB_HOT_TIER_SIZE=10GB
+PHENIX_DB_COLD_TIER_ENDPOINT=s3://bucket/path
+PHENIX_DB_COMPRESSION_ENABLED=true
 
 # Shard configuration
-VECTOR_DB_SHARD_COUNT=16
-VECTOR_DB_REPLICATION_FACTOR=3
+PHENIX_DB_SHARD_COUNT=16
+PHENIX_DB_REPLICATION_FACTOR=3
 
 # Security configuration
-VECTOR_DB_ENCRYPTION_ENABLED=true
-VECTOR_DB_ENCRYPTION_ALGORITHM=AES-GCM
+PHENIX_DB_ENCRYPTION_ENABLED=true
+PHENIX_DB_ENCRYPTION_ALGORITHM=AES-GCM
+PHENIX_DB_KMS_ENDPOINT=https://kms.example.com
 
 # Performance tuning
-VECTOR_DB_BATCH_SIZE=1000
-VECTOR_DB_WORKER_THREADS=8
-VECTOR_DB_GPU_ENABLED=true
+PHENIX_DB_BATCH_SIZE=1000
+PHENIX_DB_WORKER_THREADS=8
+PHENIX_DB_GPU_ENABLED=true
+
+# Unified query settings
+PHENIX_DB_MAX_HYBRID_RESULTS=1000
+PHENIX_DB_GRAPH_TRAVERSAL_DEPTH=3
 ```
 
 ### Configuration File
