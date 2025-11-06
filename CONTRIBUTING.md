@@ -437,8 +437,7 @@ cargo bench -- --baseline main
 
 - **GitHub Issues** - Bug reports and feature requests
 - **GitHub Discussions** - General questions and discussions
-- **Discord/Slack** - Real-time chat (if available)
-- **Email** - Security issues and private matters
+- **Discord** - Real-time chat and security issue reporting
 
 ### Getting Help
 

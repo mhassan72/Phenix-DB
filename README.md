@@ -447,4 +447,4 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - **Documentation**: [docs/](docs/)
 - **Issues**: [GitHub Issues](https://github.com/your-org/rust-vector-database/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/your-org/rust-vector-database/discussions)
-- **Security**: Report security issues to security@your-org.com
+- **Security**: Report security issues via Discord (see community channels below)
