@@ -1,0 +1,53 @@
+[workspace]
+members = ["phenix-db"]
+resolver = "2"
+
+[workspace.dependencies]
+# Core async runtime
+tokio = { version = "1.35", features = ["full"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Cryptography
+aes-gcm = "0.10"
+chacha20poly1305 = "0.10"
+rand = "0.8"
+
+# Networking and protocols
+tonic = "0.10"
+prost = "0.12"
+hyper = { version = "0.14", features = ["full"] }
+tower = "0.4"
+
+# Storage and compression
+# rocksdb = "0.21"  # Temporarily disabled due to macOS compilation issues
+lz4 = "1.24"
+
+# Observability
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+prometheus = "0.13"
+opentelemetry = "0.21"
+
+# Performance
+rayon = "1.8"
+crossbeam = "0.8"
+
+# Development dependencies
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.4"
+tempfile = "3.8"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Phenix DB Team"]
+license = "Apache-2.0"
+repository = "https://github.com/phenix-db/phenix-db"
+description = "Unified vector + document + graph database with ACID guarantees"

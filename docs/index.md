@@ -1,83 +1,131 @@
 # Phenix DB Documentation
 
-Welcome to the comprehensive documentation for Phenix DB, the unified vector + document + graph database.
+Welcome to the Phenix DB documentation. Phenix DB is a unified vector + document + graph database implemented in Rust, designed for sub-millisecond hybrid queries across billions of entities.
 
-## Quick Navigation
+## Current Status
 
-### 🚀 Getting Started
-- [Project Overview](../README.md) - Main project information and quick start
-- [Contributing Guidelines](CONTRIBUTING.md) - How to contribute to the project
-- [Development Setup](development/getting-started.md) - Local development environment
+**⚠️ Development Phase**: Phenix DB is currently in active development. The core interfaces and data structures have been implemented, but many features are still being built.
 
-### 🏗️ Architecture
-- [System Overview](architecture/overview.md) - High-level system architecture
-- [Unified Data Model](architecture/data-model.md) - Entity model with vectors, metadata, and edges
-- [Storage Architecture](architecture/storage-architecture.md) - Hot/cold tiering and persistence
-- [Query Planning](architecture/query-planning.md) - Unified query execution and optimization
-- [Security Model](architecture/security-model.md) - Encryption, auth, and tenant isolation
-- [Scaling Strategy](architecture/scaling-strategy.md) - Sharding, replication, and growth patterns
+### Completed Components
+- ✅ Unified Entity data model (vector + metadata + edges)
+- ✅ Core trait interfaces (PhenixDBAPI, EntityManager, UnifiedQueryPlanner, StorageTier)
+- ✅ MVCC and transaction management structures
+- ✅ Error handling hierarchy with recovery strategies
+- ✅ Vector operations with SIMD optimizations
+- ✅ Graph edge management and traversal
+- ✅ Unified query language and planning
+- ✅ Comprehensive test suite
 
-### 📡 API Reference
-- [gRPC Reference](api/grpc-reference.md) - gRPC service definitions and usage
-- [REST Reference](api/rest-reference.md) - REST API endpoints and examples
-- [Unified Queries](api/unified-queries.md) - Hybrid query syntax and examples
-- [SDK Examples](api/sdk-examples/) - Language-specific SDK usage guides
+### In Development
+- 🚧 Storage layer implementation (hot/cold tiers)
+- 🚧 Vector indexing (HNSW/IVF-PQ)
+- 🚧 Shard management and distribution
+- 🚧 API layer (gRPC/REST)
+- 🚧 Security and encryption
+- 🚧 Observability and monitoring
 
-### 💻 Development
-- [Code Organization](development/code-organization.md) - Module structure and boundaries
-- [Testing Guide](development/testing-guide.md) - Testing strategies and frameworks
-- [Performance Tuning](development/performance-tuning.md) - Optimization techniques and profiling
-- [Debugging Guide](development/debugging-guide.md) - Common issues and troubleshooting
+## Table of Contents
 
-### 🚀 Deployment
-- [Kubernetes Deployment](deployment/kubernetes.md) - K8s deployment and configuration
-- [Docker Deployment](deployment/docker.md) - Container deployment options
-- [Configuration Reference](deployment/configuration.md) - Environment variables and settings
-- [Monitoring Setup](deployment/monitoring.md) - Observability setup and dashboards
-- [Backup & Recovery](deployment/backup-recovery.md) - Data protection and disaster recovery
+### Getting Started
+- [Quick Start Guide](getting-started.md) 🚧
+- [Installation](installation.md) 🚧
+- [Configuration](configuration.md) 🚧
 
-### 🔒 Security
-- [Encryption](security/encryption.md) - Envelope encryption and key management
-- [Authentication](security/authentication.md) - Auth mechanisms and RBAC
-- [Tenant Isolation](security/tenant-isolation.md) - Multi-tenant security model
-- [Compliance](security/compliance.md) - Audit logging and regulatory requirements
+### Architecture
+- [System Overview](architecture/overview.md) 🚧
+- [Unified Data Model](architecture/data-model.md) 🚧
+- [Storage Architecture](architecture/storage-architecture.md) 🚧
+- [Query Planning](architecture/query-planning.md) 🚧
+- [Security Model](architecture/security-model.md) 🚧
+- [Scaling Strategy](architecture/scaling-strategy.md) 🚧
 
-### 📚 Tutorials
-- [Your First Entity](tutorials/first-entity.md) - Creating your first unified entity
-- [Hybrid Queries](tutorials/hybrid-queries.md) - Building complex vector+metadata+graph queries
-- [Scaling Your Deployment](tutorials/scaling-deployment.md) - Growing from single-node to cluster
-- [Migration Guide](tutorials/migration-guide.md) - Migrating from other vector databases
+### API Reference
+- [gRPC API](api/grpc-reference.md) 🚧
+- [REST API](api/rest-reference.md) 🚧
+- [Unified Queries](api/unified-queries.md) 🚧
+- [SDK Examples](api/sdk-examples/) 🚧
 
-## Documentation Standards
+### Development
+- [Development Setup](development/getting-started.md) 🚧
+- [Code Organization](development/code-organization.md) ✅
+- [Testing Guide](development/testing-guide.md) 🚧
+- [Performance Tuning](development/performance-tuning.md) 🚧
+- [Debugging Guide](development/debugging-guide.md) 🚧
 
-This documentation follows established standards to ensure consistency, accuracy, and developer-friendliness.
+### Deployment
+- [Kubernetes Deployment](deployment/kubernetes.md) 🚧
+- [Docker Deployment](deployment/docker.md) 🚧
+- [Configuration Management](deployment/configuration.md) 🚧
+- [Monitoring Setup](deployment/monitoring.md) 🚧
+- [Backup & Recovery](deployment/backup-recovery.md) 🚧
 
-### Key Principles
-- **Developer-first**: Written for developers who need to understand, modify, or debug the code
-- **Context-aware**: Explains not just what the code does, but why it was designed that way
-- **Unified perspective**: Documents vector, metadata, and graph operations as integrated features
-- **Practical examples**: Includes working code snippets that demonstrate real usage patterns
+### Security
+- [Encryption](security/encryption.md) 🚧
+- [Authentication](security/authentication.md) 🚧
+- [Tenant Isolation](security/tenant-isolation.md) 🚧
+- [Compliance](security/compliance.md) 🚧
 
-### File Organization
-- **README.md**: Only .md file in project root - contains project overview and quick start
-- **All other documentation**: Organized in this docs/ folder with logical subdirectories
-- **Living documentation**: Updated alongside code changes to maintain accuracy
+### Tutorials
+- [Creating Your First Entity](tutorials/first-entity.md) 🚧
+- [Building Hybrid Queries](tutorials/hybrid-queries.md) 🚧
+- [Scaling Your Deployment](tutorials/scaling-deployment.md) 🚧
+- [Migration Guide](tutorials/migration-guide.md) 🚧
 
-## Contributing to Documentation
+## Key Features
 
-Documentation improvements are always welcome! Please see our [Contributing Guidelines](CONTRIBUTING.md) for:
+### Unified Data Model
+- **Single Transactional Surface**: Vector + metadata + edges in one ACID transaction
+- **First-Class Entities**: Embeddings, documents, and relationships as unified entities
+- **MVCC Support**: Multi-version concurrency control across all data types
 
-- How to write effective documentation
-- Documentation review process
-- Style guidelines and templates
-- Testing documentation changes
+### Performance & Scale
+- **Sub-millisecond Queries**: Hybrid queries combining vector similarity, metadata filtering, and graph traversal
+- **100B+ Entity Scale**: Intelligent hot/cold tiering with 70%+ compression
+- **Horizontal Scaling**: Entity-aware sharding with automatic rebalancing
 
-## Need Help?
+### Developer Experience
+- **Multiple APIs**: gRPC and REST interfaces with comprehensive SDKs
+- **Rich Query Language**: Unified queries across vectors, metadata, and graphs
+- **Memory Safety**: Built with Rust for zero-cost abstractions and compile-time safety
 
-- **Issues**: [GitHub Issues](https://github.com/mhassan72/Rust-Vector-Database/issues) for bugs and feature requests
-- **Discussions**: [GitHub Discussions](https://github.com/mhassan72/Rust-Vector-Database/discussions) for questions and ideas
-- **Security**: Report security issues via Discord (see main README for community channels)
+### Enterprise Ready
+- **ACID Compliance**: Full transactional guarantees with distributed two-phase commit
+- **Multi-tenant**: Per-tenant encryption and isolation
+- **Cloud Native**: Kubernetes-first with Docker Swarm and single-container options
 
----
+## Quick Example
 
-*This documentation is maintained by the Phenix DB community and updated with each release.*
+```rust
+use phenix_db::{PhenixDB, Entity, UnifiedQuery, Vector};
+use phenix_db::core::traits::PhenixDBAPI;
+use serde_json::json;
+
+// Create unified entity
+let entity = Entity::builder()
+    .with_vector(vec![0.1; 384])
+    .with_metadata(json!({"title": "Document", "category": "AI"}))
+    .with_edge("related_to", other_entity_id, 0.8)
+    .build();
+
+// Insert with ACID guarantees
+let entity_id = db.insert_entity(entity).await?;
+
+// Hybrid query
+let query = UnifiedQuery::builder()
+    .vector_similarity(query_vector, 10)
+    .metadata_filter(metadata_query)
+    .build();
+
+let results = db.query(query).await?;
+```
+
+## Community & Support
+
+- **GitHub**: [phenix-db/phenix-db](https://github.com/phenix-db/phenix-db)
+- **Documentation**: This site
+- **Issues**: [GitHub Issues](https://github.com/phenix-db/phenix-db/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/phenix-db/phenix-db/discussions)
+
+## License
+
+Phenix DB is licensed under the Apache License 2.0. See [LICENSE](../LICENSE) for details.
