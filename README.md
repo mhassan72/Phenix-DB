@@ -416,6 +416,8 @@ cargo doc --open
 7. Push to the branch (`git push origin feature/amazing-feature`)
 8. Open a Pull Request
 
+For detailed contribution guidelines, see [CONTRIBUTING.md](docs/CONTRIBUTING.md).
+
 ## Monitoring and Observability
 
 ### Prometheus Metrics
@@ -481,9 +483,21 @@ curl http://localhost:8080/health
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
+## Documentation
+
+Comprehensive documentation is available in the [docs/](docs/) folder:
+
+- **[Architecture](docs/architecture/)** - System design and technical decisions
+- **[API Reference](docs/api/)** - gRPC and REST API documentation
+- **[Development Guide](docs/development/)** - Setup, testing, and contribution workflow
+- **[Deployment](docs/deployment/)** - Kubernetes, Docker, and configuration guides
+- **[Security](docs/security/)** - Encryption, authentication, and compliance
+- **[Tutorials](docs/tutorials/)** - Step-by-step learning guides
+
 ## Support
 
 - **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/your-org/rust-vector-database/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-org/rust-vector-database/discussions)
+- **Contributing**: [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)
+- **Issues**: [GitHub Issues](https://github.com/mhassan72/Rust-Vector-Database/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/mhassan72/Rust-Vector-Database/discussions)
 - **Security**: Report security issues via Discord (see community channels below)
