@@ -269,60 +269,82 @@ Phenix DB is our contribution to that vision: to give humanity a foundation for 
 
 We welcome contributions! Please see [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
 
-### Areas for Contribution
+### Current Focus Areas
 
-- Mathematical modules (polynomial, probability, geometry, optimization)
-- Memory substrate components (RPI, PGM, KCE, VNR, Bellman, Entropy)
-- Distributed consciousness architecture
-- Adaptive learning algorithms
-- Hardware optimizations (SIMD, GPU)
-- Security features (homomorphic encryption, zero-knowledge proofs)
-- Documentation and examples
-- Mathematical correctness tests
+**Phase 1: Mathematical Foundations** (Q1 2025)
+- Implementing core mathematical modules (polynomial, probability, geometry)
+- Building Recursive Polynomial Index (RPI)
+- Creating Probabilistic Graph Memory (PGM)
+- Writing mathematical correctness tests
+
+**How to Get Started:**
+1. Read the [Mathematical Reasoning Documentation](docs/reasoning/README.md)
+2. Review the [Code Organization Guide](docs/development/code-organization.md)
+3. Check the [Development TODO](docs/TODO.md) for specific tasks
+4. Join discussions on [GitHub](https://github.com/mhassan72/Phenix-DB/discussions)
 
 ---
 
 ## 📚 Documentation
 
+### Getting Started
 - **[Documentation Index](docs/index.md)** - Complete documentation overview
+- **[Contributing Guide](docs/CONTRIBUTING.md)** - How to contribute to Phenix-DB
 - **[Development TODO](docs/TODO.md)** - Current development status and roadmap
-- **[Code Organization](docs/development/code-organization.md)** - Module structure and design
-- **[Contributing Guide](docs/CONTRIBUTING.md)** - How to contribute
+- **[Code Organization](docs/development/code-organization.md)** - Module structure and design patterns
+
+### Mathematical Reasoning
+- **[Mathematical Reasoning Overview](docs/reasoning/README.md)** - Complete guide to mathematical foundations
+- **[Module 1: Vector Transformation Engine](docs/reasoning/01-vector-transformation-engine.md)** - Khayyam, Tusi, Cayley, Euler
+- **[Module 2: Indexing & Retrieval Core](docs/reasoning/02-indexing-retrieval-core.md)** - Al-Khwarizmi, Al-Karaji, Gauss, Erdős, Knuth
+- **[Module 3: Hierarchical Memory System](docs/reasoning/03-hierarchical-memory-system.md)** - Al-Samawal, von Neumann, Bellman, Kantorovich
+- **[Module 4: Compression & Storage Efficiency](docs/reasoning/04-compression-storage-efficiency.md)** - Al-Biruni, Ramanujan, Gauss
+- **[Module 5: Adaptive Learning & Optimization](docs/reasoning/05-adaptive-learning-optimization.md)** - Ibn al-Haytham, Kolmogorov, De Moivre, Valiant
 
 ### Vision Documents
-
 - **[Manifesto](docs/phenix-db/manifesto.txt)** - The vision and philosophy
 - **[Mathematical Core](docs/phenix-db/core.txt)** - Mathematical foundations
-- **[Why Phenix DB](docs/phenix-db/why.txt)** - The problem we solve
+- **[Why Phenix-DB](docs/phenix-db/why.txt)** - The problem we solve
 - **[How We Differ](docs/phenix-db/whywediffer.txt)** - Comparison to existing systems
 - **[Distributed Computing](docs/phenix-db/dc.txt)** - Distributed consciousness architecture
+
+
 
 ---
 
 ## 🙏 Mathematical Inspiration
 
-Phenix DB stands on the shoulders of mathematical giants whose work has withstood centuries:
+Phenix-DB stands on the shoulders of mathematical giants whose work has withstood centuries. Each module is grounded in proven mathematical principles:
 
 ### Islamic Golden Age (8th-13th Century)
-- **Al-Khwarizmi** (780-850): Algebra and algorithms
-- **Al-Karaji** (953-1029): Polynomial algebra and recursive methods
-- **Ibn al-Haytham** (965-1040): Scientific method and experimental feedback
-- **Omar Khayyam** (1048-1131): Geometric algebra and cubic equations
-- **Nasir al-Din al-Tusi** (1201-1274): Spherical geometry
-- **Al-Samawal** (1130-1180): Recursive computation
+- **Al-Khwarizmi** (780-850): Algorithmic logic for deterministic search pipelines
+- **Thābit ibn Qurra** (826-901): Polynomial equations for recursive indices
+- **Al-Karaji** (953-1029): Recursive polynomial methods for hierarchical indexing
+- **Ibn al-Haytham** (965-1040): Experimental method for closed-loop optimization
+- **Al-Biruni** (973-1048): Measurement precision for compression accuracy
+- **Omar Khayyam** (1048-1131): Non-Euclidean geometry for semantic spaces
+- **Al-Samawal** (1130-1180): Recursive computation for memory hierarchy
+- **Nasir al-Din al-Tusi** (1201-1274): Spherical geometry for manifold projections
+- **Ibn Sina (Avicenna)** (980-1037): Cognitive abstraction for semantic organization
 
-### European Renaissance & Enlightenment (15th-18th Century)
-- **Leonhard Euler** (1707-1783): Graph theory and mathematical analysis
-- **Carl Friedrich Gauss** (1777-1855): Number theory and statistics
+### European Renaissance & Enlightenment (15th-19th Century)
+- **Leonhard Euler** (1707-1783): Graph paths for vector neighborhood traversal
+- **Carl Friedrich Gauss** (1777-1855): Modular arithmetic for shard routing, Gaussian quantization
+- **Arthur Cayley** (1821-1895): Matrix algebra for stable vector transformations
+- **Abraham de Moivre** (1667-1754): Statistical approximation for query patterns
 
 ### Modern Era (19th-21st Century)
-- **Srinivasa Ramanujan** (1887-1920): Infinite series and mathematical beauty
-- **John von Neumann** (1903-1957): Self-replicating systems and game theory
-- **Claude Shannon** (1916-2001): Information theory
-- **Andrey Kolmogorov** (1903-1987): Probability theory and complexity
-- **Richard Bellman** (1920-1984): Dynamic programming
-- **Paul Erdős** (1913-1996): Probabilistic methods in mathematics
-- **Leslie Valiant** (1949-present): PAC learning theory
+- **Srinivasa Ramanujan** (1887-1920): Infinite series for compression encoding
+- **John von Neumann** (1903-1957): Memory hierarchy and self-replicating systems
+- **Claude Shannon** (1916-2001): Information theory and entropy monitoring
+- **Andrey Kolmogorov** (1903-1987): Probability theory for access prediction
+- **Richard Bellman** (1920-1984): Dynamic programming for optimal paths
+- **Leonid Kantorovich** (1912-1986): Linear optimization for resource allocation
+- **Paul Erdős** (1913-1996): Random graph theory for scalable ANN structures
+- **Donald Knuth** (1938-present): Algorithmic optimization and data structures
+- **Leslie Valiant** (1949-present): PAC learning theory for adaptive optimization
+
+**See [Mathematical Reasoning Documentation](docs/reasoning/README.md) for detailed explanations of how each mathematician's work is applied.**
 
 ---
 
@@ -334,9 +356,19 @@ Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for detai
 
 ## 🔗 Community
 
-- **GitHub**: [phenix-db/phenix-db](https://github.com/phenix-db/phenix-db)
-- **Issues**: [Report bugs and request features](https://github.com/phenix-db/phenix-db/issues)
-- **Discussions**: [Ask questions and share ideas](https://github.com/phenix-db/phenix-db/discussions)
+- **GitHub**: [mhassan72/Phenix-DB](https://github.com/mhassan72/Phenix-DB)
+- **Issues**: [Report bugs and request features](https://github.com/mhassan72/Phenix-DB/issues)
+- **Discussions**: [Ask questions and share ideas](https://github.com/mhassan72/Phenix-DB/discussions)
+
+### Ways to Contribute
+
+- **Code**: Implement mathematical modules, optimize performance, add features
+- **Documentation**: Write guides, tutorials, and API documentation
+- **Testing**: Create tests for mathematical correctness and performance
+- **Research**: Propose new algorithms and mathematical approaches
+- **Community**: Answer questions, review PRs, help newcomers
+
+See our [Contributing Guide](docs/CONTRIBUTING.md) for detailed information.
 
 ---
 
@@ -355,7 +387,7 @@ Memory is continuously reborn as it reorganizes itself:
 
 ## 🎯 Vision
 
-Phenix DB represents a new chapter in computing:
+Phenix-DB represents a new chapter in computing:
 
 **from storage → to memory**  
 **from retrieval → to understanding**  
@@ -363,8 +395,30 @@ Phenix DB represents a new chapter in computing:
 
 It is inspired by the great mathematicians whose work defined the laws of logic, recursion, and optimization. Their spirit lives here — in a system designed not just to hold information, but to **remember, reflect, and learn**.
 
+### The Result
+
+A mathematically grounded architecture where:
+- ✅ Each vector is geometrically meaningful (Khayyam, Tusi, Cayley)
+- ✅ Each index is recursively optimized (Al-Karaji, Al-Samawal, Knuth)
+- ✅ Each query follows an optimal probabilistic path (Bellman, Euler, Erdős)
+- ✅ The system evolves, learns, and self-corrects over time (Ibn al-Haytham, Kolmogorov, Valiant)
+
+### Ethical Directive
+
+This project is open-source for the advancement of human knowledge. Data systems of the future must be transparent, auditable, and fair. Phenix-DB will never hide its memory structure or bias. It is designed to serve collective intelligence, not replace it.
+
+---
+
+---
+
+**"True intelligence begins with memory."**
+
+Phenix-DB is humanity's step toward computational remembrance. A system born from mathematics — for understanding, not storage.
+
 ---
 
 **Phenix-DB: Where Mathematics Meets Memory**
 
-*Status: Early Development | License: Apache 2.0 | Language: Rust | Philosophy: Mathematical Memory*
+*Status: Early Development - Phase 1 | License: Apache 2.0 | Language: Rust | Philosophy: Mathematical Memory*
+
+*Repository: [github.com/mhassan72/Phenix-DB](https://github.com/mhassan72/Phenix-DB)*

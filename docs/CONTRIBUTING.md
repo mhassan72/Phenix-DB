@@ -1,563 +1,406 @@
-# Contributing to Phenix DB
+# Contributing to Phenix-DB
 
-Thank you for your interest in contributing to Phenix DB! This document provides guidelines and information for contributors to our unified vector + document + graph database.
+Thank you for your interest in contributing to Phenix-DB! This project aims to build a mathematically grounded, adaptive, distributed memory database that transforms static storage into cognitive memory.
 
 ## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
+- [Development Philosophy](#development-philosophy)
+- [How to Contribute](#how-to-contribute)
 - [Development Setup](#development-setup)
-- [Contributing Guidelines](#contributing-guidelines)
-- [Pull Request Process](#pull-request-process)
 - [Coding Standards](#coding-standards)
-- [Testing Guidelines](#testing-guidelines)
-- [Documentation](#documentation)
-- [Performance Considerations](#performance-considerations)
-- [Security Guidelines](#security-guidelines)
+- [Testing Requirements](#testing-requirements)
+- [Pull Request Process](#pull-request-process)
 - [Community](#community)
+
+---
 
 ## Code of Conduct
 
-This project adheres to a code of conduct that we expect all contributors to follow. Please be respectful, inclusive, and constructive in all interactions.
+Phenix-DB is committed to fostering an open, welcoming, and inclusive community. We expect all contributors to:
 
-### Our Standards
-
-- Use welcoming and inclusive language
-- Be respectful of differing viewpoints and experiences
-- Gracefully accept constructive criticism
-- Focus on what is best for the community
+- Be respectful and considerate in all interactions
+- Welcome newcomers and help them get started
+- Focus on what is best for the community and the project
 - Show empathy towards other community members
+- Provide and accept constructive feedback gracefully
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- **Rust 1.70+** with Cargo
-- **Git** for version control
-- **Docker** (optional, for testing deployments)
-- **Kubernetes** (optional, for K8s testing)
+- **Rust**: Latest stable version (1.70+)
+- **Git**: For version control
+- **Basic understanding**: Linear algebra, probability theory, or distributed systems (helpful but not required)
 
-### Development Setup
+### Quick Start
 
-1. **Fork and Clone**
-   ```bash
-   git clone https://github.com/your-username/Rust-Vector-Database.git
-   cd Rust-Vector-Database
-   ```
+1. Fork the repository
+2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/Phenix-DB.git`
+3. Create a feature branch: `git checkout -b feature/your-feature-name`
+4. Make your changes
+5. Run tests: `cargo test`
+6. Commit and push your changes
+7. Open a pull request
 
-2. **Install Dependencies**
-   ```bash
-   # Install Rust toolchain components
-   rustup component add clippy rustfmt
-   
-   # Install development tools
-   cargo install cargo-watch cargo-audit cargo-outdated
-   ```
+---
 
-3. **Build and Test**
-   ```bash
-   # Build the project
-   cargo build
-   
-   # Run tests
-   cargo test
-   
-   # Run clippy for linting
-   cargo clippy
-   
-   # Format code
-   cargo fmt
-   ```
+## Development Philosophy
 
-4. **Set up Pre-commit Hooks** (optional but recommended)
-   ```bash
-   # Install pre-commit
-   pip install pre-commit
-   
-   # Install hooks
-   pre-commit install
-   ```
+Phenix-DB is built on five mathematical pillars. Every contribution should align with these principles:
 
-## Contributing Guidelines
+### Core Principles
+
+1. **Recursion** — Memory references itself to learn and optimize
+2. **Probability** — Adaptive retrieval based on patterns, not deterministic lookups
+3. **Optimization** — Paths evolve as the system learns (Bellman optimization)
+4. **Geometry** — Semantic meaning preserved in non-Euclidean space
+5. **Compression** — Dense storage without information loss (Kolmogorov complexity)
+
+### Design Patterns
+
+- **Recursive composition**: Components reference and optimize each other
+- **Probabilistic coordination**: Entropy-driven consensus instead of deterministic
+- **Mathematical correctness**: Unit tests validate mathematical properties
+- **Adaptive behavior**: System learns and evolves over time
+- **Semantic awareness**: Operations preserve meaning, not just data
+- **Distributed intelligence**: Each node contributes to global consciousness
+
+### Architectural Principles
+
+- **OOP**: Object-Oriented modularity for clarity and reusability
+- **SRP**: Single Responsibility — each component does one thing well
+- **DRY**: Don't Repeat Yourself — abstract common logic
+- **KISS**: Keep It Simple, but mathematically rigorous
+- **SOLID**: Scalable and replaceable architecture
+
+---
+
+## How to Contribute
 
 ### Types of Contributions
 
-We welcome various types of contributions to Phenix DB:
+We welcome various types of contributions:
 
-- **Unified data model improvements** - Enhance Entity, vector, metadata, and edge handling
-- **Query optimization** - Improve hybrid vector + metadata + graph query performance
-- **Storage enhancements** - Optimize hot/cold tiering and compression algorithms
-- **Security features** - Strengthen encryption, KMS integration, and RBAC
-- **Shard management** - Improve distributed operations and rebalancing
-- **API development** - Enhance gRPC/REST interfaces and SDK generation
-- **Performance improvements** - Optimize SIMD operations and GPU acceleration
-- **Documentation** - Improve docs, examples, and architectural guides
-- **Tests** - Add comprehensive test coverage for unified operations
-- **Bug fixes** - Fix issues across vector, document, and graph functionality
+#### 1. Code Contributions
+- Implement core mathematical modules (RPI, PGM, KCE, Bellman Optimizer)
+- Add new features aligned with the roadmap
+- Optimize performance (SIMD, GPU acceleration)
+- Fix bugs and improve error handling
 
-### Before You Start
+#### 2. Documentation
+- Improve API documentation
+- Write tutorials and guides
+- Document mathematical derivations
+- Create examples and use cases
 
-1. **Check existing issues** - Look for related issues or discussions
-2. **Create an issue** - For significant changes, create an issue first
-3. **Discuss your approach** - Get feedback before implementing large features
-4. **Check the roadmap** - Ensure your contribution aligns with project goals
+#### 3. Testing
+- Write unit tests for mathematical correctness
+- Create integration tests
+- Develop performance benchmarks
+- Conduct chaos engineering tests
 
-### Issue Guidelines
+#### 4. Research & Design
+- Propose new mathematical approaches
+- Design distributed algorithms
+- Research compression techniques
+- Explore learning algorithms
 
-When creating issues:
+#### 5. Community Support
+- Answer questions in discussions
+- Review pull requests
+- Help newcomers get started
+- Share use cases and feedback
 
-- **Use clear, descriptive titles**
-- **Provide detailed descriptions** with steps to reproduce (for bugs)
-- **Include system information** (OS, Rust version, etc.)
-- **Add relevant labels** (bug, enhancement, documentation, etc.)
-- **Reference related issues** if applicable
+---
 
-### Feature Requests
+## Development Setup
 
-For new features:
-
-- **Explain the use case** - Why is this feature needed?
-- **Describe the solution** - What should the feature do?
-- **Consider alternatives** - Are there other ways to solve this?
-- **Assess impact** - How does this affect performance, API, etc.?
-
-## Pull Request Process
-
-### 1. Create a Branch
+### 1. Install Dependencies
 
 ```bash
-# Create a feature branch
-git checkout -b feature/your-feature-name
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Or for bug fixes
-git checkout -b fix/issue-description
+# Clone the repository
+git clone https://github.com/mhassan72/Phenix-DB.git
+cd Phenix-DB
+
+# Build the project
+cargo build
+
+# Run tests
+cargo test
 ```
 
-### 2. Make Changes
-
-- Follow the [coding standards](#coding-standards)
-- Add tests for new functionality
-- Update documentation as needed
-- Ensure all tests pass
-
-### 3. Commit Guidelines
-
-Use conventional commit messages:
+### 2. Project Structure
 
 ```
-type(scope): description
-
-[optional body]
-
-[optional footer]
+src/
+├── core/           # Core entity and transaction logic
+├── mathematical/   # Mathematical algorithms (polynomial, probability, etc.)
+├── memory/         # Memory substrate (RPI, PGM, KCE, Bellman)
+├── storage/        # Three-tier storage (hot/warm/cold)
+├── distributed/    # Distributed consciousness and consensus
+├── concurrency/    # Lock-free concurrency and MVCC
+├── learning/       # Adaptive learning system
+├── security/       # Encryption and authentication
+└── api/            # gRPC and REST interfaces
 ```
 
-**Types:**
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting, etc.)
-- `refactor`: Code refactoring
-- `test`: Adding or updating tests
-- `perf`: Performance improvements
-- `chore`: Maintenance tasks
+### 3. Running Locally
 
-**Examples:**
-```
-feat(entity): add unified Entity upsert with ACID guarantees
+```bash
+# Run the server
+cargo run --bin server
 
-fix(query): resolve hybrid query result aggregation bug
+# Run CLI tools
+cargo run --bin cli -- --help
 
-docs(api): update unified query examples with graph traversal
-
-test(storage): add benchmarks for hot/cold tier promotion
-
-perf(index): optimize SIMD operations for vector similarity
-
-security(kms): implement envelope encryption with key rotation
+# Run with features
+cargo run --features "simd,gpu"
 ```
 
-### 4. Submit Pull Request
-
-1. **Push your branch**
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-2. **Create pull request** on GitHub with:
-   - Clear title and description
-   - Reference to related issues
-   - Description of changes made
-   - Testing performed
-   - Breaking changes (if any)
-
-3. **Address review feedback** promptly and professionally
-
-### 5. Pull Request Checklist
-
-Before submitting:
-
-- [ ] Code follows project style guidelines
-- [ ] Self-review of code completed
-- [ ] Tests added for new functionality
-- [ ] All tests pass locally
-- [ ] Documentation updated (if needed)
-- [ ] No breaking changes (or clearly documented)
-- [ ] Commit messages follow conventional format
-- [ ] Branch is up to date with main
+---
 
 ## Coding Standards
 
-### Rust Style Guidelines
+### Rust Style
 
-Follow standard Rust conventions:
+- Follow idiomatic Rust patterns
+- Use the type system for safety
+- Prefer immutability where possible
+- Use `Result` and `Option` for error handling
+- Run `cargo fmt` before committing
+- Run `cargo clippy` and fix warnings
 
-- **Use `rustfmt`** for consistent formatting
-- **Follow Rust naming conventions**:
-  - `snake_case` for functions, variables, modules
-  - `PascalCase` for types, structs, enums
-  - `SCREAMING_SNAKE_CASE` for constants
-- **Use meaningful names** that clearly express intent
-- **Prefer composition over inheritance** (traits over structs)
-- **Use `Result<T, E>` for error handling**
-- **Avoid `unwrap()` and `expect()` in production code**
+### Naming Conventions
 
-### Code Organization for Phenix DB
+- **Modules**: `snake_case` (e.g., `polynomial_tree.rs`)
+- **Structs**: `PascalCase` (e.g., `RecursivePolynomialIndex`)
+- **Functions**: `snake_case` (e.g., `evaluate_polynomial`)
+- **Constants**: `SCREAMING_SNAKE_CASE` (e.g., `MAX_POLYNOMIAL_DEGREE`)
+- **Traits**: Descriptive with behavior (e.g., `AdaptiveLearning`)
 
-- **Unified operations** - Group vector, metadata, and edge operations together
-- **Entity-first design** - Structure code around the unified Entity model
-- **Security boundaries** - Enforce tenant isolation and encryption at module boundaries
-- **Shard awareness** - All components must handle distributed operations gracefully
-- **Hot path optimization** - Separate performance-critical vector operations
-- **Clear interfaces** - Well-documented traits for unified storage and querying
-- **MVCC integration** - All data modifications must be version-aware
+### Mathematical Code
 
-### Error Handling
+- **Document derivations**: Include references to mathematical principles
+- **Cite formulas**: Comment with the source (e.g., "Bellman equation, Kantorovich 1939")
+- **Validate properties**: Write tests that verify mathematical correctness
+- **Use clear notation**: Match variable names to mathematical notation when possible
 
+Example:
 ```rust
-// Good: Unified entity operations with proper error handling
-async fn upsert_entity(entity: &Entity, tenant_id: TenantId) -> Result<EntityId, PhenixError> {
-    // Validate entity components
-    entity.validate()?;
-    
-    // Ensure tenant isolation
-    self.validate_tenant_access(tenant_id)?;
-    
-    // Perform unified upsert with ACID guarantees
-    self.storage.upsert_with_transaction(entity, tenant_id).await
-}
-
-// Bad: Separate operations without ACID guarantees
-fn insert_vector_and_metadata(vector: Vector, metadata: JSONB) -> VectorId {
-    // Don't split unified operations
-    let vector_id = self.vector_store.insert(vector).unwrap();
-    self.metadata_store.insert(vector_id, metadata).unwrap(); // Race condition!
-    vector_id
+/// Evaluates polynomial using Al-Karaji recursive pattern
+/// P(x) = Σ aᵢ * xⁱ for i = 0 to n
+fn evaluate_polynomial(coefficients: &[f64], x: f64) -> f64 {
+    coefficients.iter().enumerate()
+        .fold(0.0, |acc, (i, &coeff)| acc + coeff * x.powi(i as i32))
 }
 ```
 
-### Performance Guidelines for Phenix DB
+### Probability and Statistics
 
-- **Unified query optimization** - Optimize across vector similarity, metadata filters, and graph traversal
-- **Hot path separation** - Isolate vector operations in performance-critical modules
-- **SIMD and GPU acceleration** - Leverage hardware acceleration for vector computations
-- **Smart caching** - Implement intelligent hot/cold tier decisions across all data types
-- **Batch operations** - Process entities in batches for optimal throughput
-- **Memory layout optimization** - Consider cache efficiency for unified Entity storage
-- **Zero-copy operations** - Minimize data copying in vector processing pipelines
-- **Profile hybrid queries** - Measure performance across all query components
+- Probabilities must be in range [0.0, 1.0]
+- Probability distributions must sum to 1.0 (within tolerance 0.001)
+- Use atomic operations for concurrent probability updates
+- Implement decay for unused edges
 
-## Testing Guidelines
-
-### Test Categories
-
-1. **Unit Tests** - Test individual functions and components
-2. **Integration Tests** - Test component interactions
-3. **Performance Tests** - Validate performance requirements
-4. **End-to-End Tests** - Test complete workflows
-
-### Writing Tests
-
+Example:
 ```rust
-#[cfg(test)]
-mod tests {
-    use super::*;
-    
-    #[test]
-    fn test_entity_validation() {
-        let entity = Entity::new()
-            .with_vector(vec![3.0, 4.0])
-            .with_metadata(json!({"title": "Test Doc"}))
-            .with_edge("related_to", "entity_2", 0.8);
-        
-        assert!(entity.validate().is_ok());
-        assert_eq!(entity.vector.as_ref().unwrap().magnitude(), 5.0);
-    }
-    
-    #[tokio::test]
-    async fn test_unified_upsert() {
-        let database = setup_test_database().await;
-        let entity = create_test_entity();
-        
-        let result = database.upsert_entity(entity, TenantId::test()).await;
-        assert!(result.is_ok());
-        
-        // Verify ACID guarantees - all components should be stored together
-        let retrieved = database.get_entity(result.unwrap(), Snapshot::latest()).await.unwrap();
-        assert!(retrieved.vector.is_some());
-        assert!(retrieved.metadata.is_some());
-        assert!(!retrieved.edges.as_ref().unwrap().is_empty());
-    }
-    
-    #[tokio::test]
-    async fn test_hybrid_query() {
-        let database = setup_test_database_with_entities().await;
-        
-        let query = UnifiedQuery::new()
-            .with_vector_similarity(vec![0.1, 0.2], 5)
-            .with_metadata_filter(json!({"category": "tech"}))
-            .with_graph_constraint("related_to:entity_2");
-        
-        let results = database.hybrid_query(query).await.unwrap();
-        
-        // Verify results satisfy all constraints
-        for result in results {
-            assert!(result.similarity_score > 0.0);
-            assert_eq!(result.entity.metadata.as_ref().unwrap()["category"], "tech");
-        }
+/// Updates edge probability based on co-access pattern
+fn update_probability(&mut self, co_accessed: bool) {
+    if co_accessed {
+        self.probability = (self.probability + 0.1).min(1.0);
+    } else {
+        self.probability = (self.probability - 0.01).max(0.0);
     }
 }
 ```
-
-### Test Guidelines for Phenix DB
-
-- **Test unified operations** - Verify ACID guarantees across vector, metadata, and edges
-- **Test hybrid queries** - Validate combined vector similarity, metadata filtering, and graph traversal
-- **Test tenant isolation** - Ensure proper security boundaries and data separation
-- **Test shard operations** - Verify distributed query routing and result aggregation
-- **Test hot/cold tiering** - Validate promotion/demotion logic and compression
-- **Test failure scenarios** - WAL replay, node failures, and transaction rollbacks
-- **Use descriptive test names** that explain the unified operation being tested
-- **Mock external dependencies** (KMS, object storage) in unit tests
-- **Test performance requirements** - Sub-millisecond latency for hybrid queries
-
-### Performance Testing
-
-```rust
-#[cfg(test)]
-mod benchmarks {
-    use criterion::{black_box, criterion_group, criterion_main, Criterion};
-    
-    fn benchmark_vector_search(c: &mut Criterion) {
-        let index = setup_large_index();
-        let query = test_query_vector();
-        
-        c.bench_function("vector_search_1m", |b| {
-            b.iter(|| {
-                black_box(index.search(black_box(&query), 10))
-            })
-        });
-    }
-    
-    criterion_group!(benches, benchmark_vector_search);
-    criterion_main!(benches);
-}
-```
-
-## Documentation
-
-### Code Documentation
-
-- **Document public APIs** with comprehensive rustdoc comments
-- **Include examples** in documentation
-- **Document error conditions** and edge cases
-- **Keep documentation up to date** with code changes
-
-```rust
-/// Executes a unified hybrid query combining vector similarity, metadata filtering, and graph traversal.
-///
-/// # Arguments
-///
-/// * `query` - The unified query specification containing vector, metadata, and graph constraints
-/// * `tenant_id` - Tenant identifier for security isolation
-/// * `snapshot` - MVCC snapshot for consistent reads
-///
-/// # Returns
-///
-/// Returns a `Result` containing a vector of `ScoredEntity` objects
-/// ordered by combined similarity score (highest first).
-///
-/// # Errors
-///
-/// Returns `QueryError` if:
-/// * The query vector has invalid dimensions
-/// * Metadata filter syntax is invalid
-/// * Graph constraint references non-existent entities
-/// * Tenant access is denied
-/// * MVCC snapshot is invalid
-///
-/// # Examples
-///
-/// ```
-/// use phenix_db::{PhenixDB, UnifiedQuery, TenantId};
-///
-/// let db = PhenixDB::new().await?;
-/// let query = UnifiedQuery::new()
-///     .with_vector_similarity(vec![0.1, 0.2, 0.3], 10)
-///     .with_metadata_filter(json!({"category": "tech"}))
-///     .with_graph_constraint("related_to:entity_123");
-/// 
-/// let results = db.hybrid_query(query, TenantId::from("tenant1"), Snapshot::latest()).await?;
-///
-/// for result in results {
-///     println!("Entity {}: score {}, metadata: {:?}", 
-///              result.entity.id, result.score, result.entity.metadata);
-/// }
-/// ```
-pub async fn hybrid_query(
-    &self,
-    query: UnifiedQuery,
-    tenant_id: TenantId,
-    snapshot: Snapshot,
-) -> Result<Vec<ScoredEntity>, QueryError> {
-    // Implementation with unified query planning
-}
-```
-
-### README and Guides
-
-- **Keep README up to date** with latest features
-- **Provide clear examples** for common use cases
-- **Document configuration options** thoroughly
-- **Include troubleshooting guides** for common issues
-
-## Performance Considerations
-
-### Benchmarking
-
-Always benchmark performance-critical changes:
-
-```bash
-# Run benchmarks
-cargo bench
-
-# Compare with baseline
-cargo bench -- --save-baseline main
-git checkout feature-branch
-cargo bench -- --baseline main
-```
-
-### Memory Management
-
-- **Use `Box<dyn Trait>` for trait objects** when needed
-- **Prefer `Rc<RefCell<T>>` over `Arc<Mutex<T>>`** for single-threaded scenarios
-- **Use `Arc<T>` for immutable shared data**
-- **Consider memory pools** for frequent allocations
-- **Profile memory usage** with tools like `valgrind` or `heaptrack`
 
 ### Concurrency
 
-- **Use `tokio` for async operations**
-- **Prefer message passing** over shared state
-- **Use `RwLock` instead of `Mutex`** when appropriate
-- **Avoid blocking operations** in async contexts
-- **Consider work-stealing** for CPU-intensive tasks
+- Use lock-free atomics with `SeqCst` ordering
+- Implement MVCC for snapshot isolation
+- Never block readers during writes
+- Use probabilistic quorum, not strict majority
 
-## Security Guidelines
+---
 
-### Secure Coding Practices for Phenix DB
+## Testing Requirements
 
-- **Tenant isolation** - Always validate tenant access for all operations
-- **Envelope encryption** - Use per-tenant DEK with KMS CMK for all data
-- **Input validation** - Sanitize vectors, metadata, and graph constraints at API boundaries
-- **Constant-time operations** - Avoid timing attacks in cryptographic and comparison operations
-- **Secure key management** - Integrate with KMS for key lifecycle and rotation
-- **Audit logging** - Log all security-relevant operations with tenant context
-- **RBAC enforcement** - Check permissions at every API and management layer
-- **Signed operations** - Use signed WAL entries and snapshots for integrity
+### Test Categories
 
-### Cryptography for Phenix DB
+#### 1. Mathematical Correctness Tests
+Located in `tests/mathematical/`
 
-- **Envelope encryption pattern** - DEK for data encryption, CMK for key encryption
-- **Use established libraries** (ring, rustls, aws-kms, etc.)
-- **AES-GCM or ChaCha20-Poly1305** for vector and metadata encryption
-- **Key rotation support** - Implement seamless key rotation without downtime
-- **KMS integration** - Support multiple KMS providers (AWS KMS, HashiCorp Vault, etc.)
-- **Signed WAL entries** - Ensure integrity of transaction logs
-- **mTLS for internal communication** - Secure shard-to-shard communication
-- **Audit all cryptographic operations** - Comprehensive security review required
+- Verify polynomial evaluation produces correct results
+- Ensure probability distributions sum to 1.0
+- Validate entropy calculations stay in [0.0, 1.0]
+- Test compression is lossless (round-trip)
 
-### Memory Safety
+Example:
+```rust
+#[test]
+fn test_probability_distribution_sums_to_one() {
+    let edges = create_test_edges();
+    let sum: f32 = edges.iter().map(|e| e.probability).sum();
+    assert!((sum - 1.0).abs() < 0.001, "Probabilities must sum to 1.0");
+}
+```
 
-- **Leverage Rust's ownership system**
-- **Avoid `unsafe` code** unless absolutely necessary
-- **Audit all `unsafe` blocks** thoroughly
-- **Use tools like `miri`** to detect undefined behavior
-- **Consider fuzzing** for input validation
+#### 2. Integration Tests
+Located in `tests/integration/`
+
+- End-to-end workflows
+- Multi-component interactions
+- Distributed scenarios
+
+#### 3. Performance Benchmarks
+Located in `benches/`
+
+- Polynomial evaluation speed
+- Compression ratio and latency
+- Query throughput
+- Learning convergence rate
+
+#### 4. Cognitive Behavior Tests
+Located in `tests/cognitive/`
+
+- Adaptive learning behavior
+- Access pattern prediction
+- Self-reorganization triggers
+
+### Running Tests
+
+```bash
+# Run all tests
+cargo test
+
+# Run specific test category
+cargo test --test mathematical
+
+# Run benchmarks
+cargo bench
+
+# Run with coverage
+cargo tarpaulin --out Html
+```
+
+---
+
+## Pull Request Process
+
+### Before Submitting
+
+1. **Create an issue** describing the problem or feature
+2. **Discuss the approach** with maintainers if it's a significant change
+3. **Write tests** that validate your changes
+4. **Update documentation** if you're changing APIs or behavior
+5. **Run all tests** and ensure they pass
+6. **Format code**: `cargo fmt`
+7. **Check lints**: `cargo clippy`
+
+### PR Guidelines
+
+- **Title**: Clear and descriptive (e.g., "Implement Bellman optimizer for path selection")
+- **Description**: Explain what, why, and how
+  - What problem does this solve?
+  - What approach did you take?
+  - Are there any trade-offs or limitations?
+- **Link to issue**: Reference related issues
+- **Tests**: Include test results or benchmark comparisons
+- **Breaking changes**: Clearly mark and explain any breaking changes
+
+### Review Process
+
+1. **Automated checks**: CI must pass (tests, lints, formatting)
+2. **Mathematical review**: For mathematical components, a reviewer will verify correctness
+3. **Code review**: At least one maintainer approval required
+4. **Discussion**: Address feedback and questions
+5. **Merge**: Once approved, maintainers will merge your PR
+
+### Commit Messages
+
+Follow conventional commits format:
+
+```
+type(scope): brief description
+
+Detailed explanation if needed
+
+Fixes #123
+```
+
+Types: `feat`, `fix`, `docs`, `test`, `refactor`, `perf`, `chore`
+
+Examples:
+- `feat(rpi): implement recursive polynomial index`
+- `fix(pgm): correct probability normalization`
+- `docs(api): add examples for query interface`
+- `test(bellman): add convergence tests`
+
+---
 
 ## Community
 
 ### Communication Channels
 
-- **GitHub Issues** - Bug reports and feature requests
-- **GitHub Discussions** - General questions and discussions
-- **Discord** - Real-time chat and security issue reporting
+- **GitHub Discussions**: For questions, ideas, and general discussion
+- **GitHub Issues**: For bug reports and feature requests
+- **Pull Requests**: For code contributions and reviews
 
 ### Getting Help
 
-- **Search existing issues** before asking questions
-- **Provide minimal reproducible examples**
-- **Include relevant system information**
-- **Be patient and respectful** when asking for help
-
-### Mentorship
-
-New contributors are welcome! If you're new to:
-
-- **Rust** - We can help you learn Rust-specific patterns
-- **Vector databases** - We can explain domain concepts
-- **Open source** - We can guide you through the contribution process
-- **Performance optimization** - We can share profiling and optimization techniques
+- Check existing documentation in `docs/`
+- Search GitHub issues for similar questions
+- Ask in GitHub Discussions
+- Review the project documentation and guides
 
 ### Recognition
 
-Contributors to Phenix DB are recognized through:
-
-- **Contributor list** in README and project documentation
-- **Release notes** highlighting significant unified database improvements
-- **GitHub contributor graphs** and statistics
-- **Community shout-outs** for exceptional contributions to the unified architecture
-- **Technical blog posts** featuring major architectural contributions
-- **Conference presentations** acknowledging key contributors
-
-## Release Process
-
-### Versioning
-
-We follow [Semantic Versioning](https://semver.org/):
-
-- **MAJOR** - Incompatible API changes
-- **MINOR** - New functionality (backward compatible)
-- **PATCH** - Bug fixes (backward compatible)
-
-### Release Checklist
-
-For maintainers preparing releases:
-
-1. Update version numbers
-2. Update CHANGELOG.md
-3. Run full test suite
-4. Update documentation
-5. Create release notes
-6. Tag release
-7. Publish to crates.io
-8. Update Docker images
-9. Announce release
-
-## License
-
-By contributing to this project, you agree that your contributions will be licensed under the Apache License 2.0.
+We value all contributions! Contributors will be:
+- Listed in the project's contributors page
+- Acknowledged in release notes for significant contributions
+- Invited to join the core team for sustained, high-quality contributions
 
 ---
 
-Thank you for contributing to Phenix DB! Your efforts help make this unified vector + document + graph database better for everyone. Together, we're building the future of transactional, scalable, and secure data storage for AI/ML applications.
+## Ethical Directive
+
+This project is open-source for the advancement of human knowledge. We are building transparent, auditable, and fair data systems. Phenix-DB will never hide its memory structure or bias. It is designed to serve collective intelligence, not replace it.
+
+### Security
+
+- Never commit credentials or secrets
+- Report security vulnerabilities privately to maintainers
+- Use reproducible builds
+- Verify third-party dependencies
+
+### Licensing
+
+By contributing to Phenix-DB, you agree that your contributions will be licensed under the same license as the project (see LICENSE file).
+
+---
+
+## Final Motto
+
+**"True intelligence begins with memory."**
+
+Phenix-DB is humanity's step toward computational remembrance. A system born from mathematics — for understanding, not storage.
+
+Thank you for contributing to this vision!
+
+---
+
+## Questions?
+
+If you have questions about contributing, please:
+1. Check the documentation in `docs/`
+2. Ask in GitHub Discussions
+3. Open an issue for clarification
+
+We're here to help you contribute successfully!

@@ -1,12 +1,20 @@
-# Phenix DB Development TODO
+# Phenix-DB Development TODO
 
-This document tracks the development roadmap for Phenix DB's mathematical memory substrate.
+This document tracks the development roadmap for Phenix-DB's mathematical memory substrate.
 
 ## Project Status Overview
 
-**Current Phase**: Initial Development - Building Mathematical Foundations
+**Current Phase**: Phase 1 - Building Mathematical Foundations  
+**Focus**: Core mathematical modules and memory substrate components  
+**Timeline**: Q1 2025 - Q1 2026 for v1.0.0
 
-All components are in active development. The project is being built from the ground up as a mathematical memory substrate.
+All components are in active development. The project is being built from the ground up as a mathematical memory substrate that learns, compresses, and self-organizes.
+
+## Quick Links
+
+- [Contributing Guide](CONTRIBUTING.md)
+- [Code Organization](development/code-organization.md)
+- [Mathematical Reasoning](reasoning/README.md)
 
 ## Development Roadmap
 
@@ -276,6 +284,25 @@ All components are in active development. The project is being built from the gr
 
 ---
 
+## Contributing
+
+We welcome contributions at all levels! See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on:
+- Code contributions (mathematical modules, features, optimizations)
+- Documentation improvements
+- Testing and benchmarking
+- Research and design proposals
+- Community support
+
+### Getting Started with Contributions
+
+1. Review the [Contributing Guide](CONTRIBUTING.md)
+2. Check the [Code Organization](development/code-organization.md)
+3. Understand the [Mathematical Reasoning](reasoning/README.md)
+4. Pick a task from this TODO list or propose a new one
+
+---
+
 **Last Updated**: 8 Nov 2025  
 **Architecture**: Mathematical Memory Substrate  
-**Status**: Early Development
+**Status**: Early Development - Foundation Phase  
+**Repository**: https://github.com/mhassan72/Phenix-DB

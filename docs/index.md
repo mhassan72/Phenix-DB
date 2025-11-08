@@ -14,18 +14,37 @@ Phenix DB is not a database — it's a **cognitive memory substrate** that learn
 
 ## Current Status
 
-**⚠️ Early Development**: Phenix DB is in the initial development phase, building the mathematical memory substrate from the ground up.
+**⚠️ Early Development**: Phenix-DB is in Phase 1 of development, building the mathematical memory substrate from the ground up.
 
-### Development Roadmap
+### Development Phases
+
+**Phase 1: Mathematical Foundations** (Q1 2025) - Current
 - 🚧 Mathematical foundation modules (polynomial, probability, geometry, optimization, compression)
 - 🚧 Recursive Polynomial Index (RPI) for hierarchical recall
 - 🚧 Probabilistic Graph Memory (PGM) with learning
+
+**Phase 2: Memory Substrate** (Q2 2025)
 - 🚧 Kolmogorov Compression Engine (KCE) for 70-90% reduction
 - 🚧 Bellman Optimizer for dynamic path optimization
 - 🚧 Von Neumann Redundancy Fabric (VNR) for self-healing
 - 🚧 Entropy Monitor for information density
+
+**Phase 3: Distributed Intelligence** (Q3 2025)
 - 🚧 Distributed Consciousness architecture
+- 🚧 Lock-free concurrent operations
+- 🚧 Hardware acceleration (SIMD, GPU)
+
+**Phase 4: Cognitive Features** (Q4 2025)
 - 🚧 Adaptive Learning and self-optimization
+- 🚧 Semantic locality and contextual awareness
+- 🚧 Mathematical security and integrity
+
+**Phase 5: Production Ready** (Q1 2026)
+- 🚧 Trillion-scale performance optimization
+- 🚧 Complete observability and monitoring
+- 🚧 Full documentation and guides
+
+See [TODO.md](TODO.md) for detailed roadmap and tasks.
 
 ## Table of Contents
 
@@ -51,6 +70,8 @@ Phenix DB is not a database — it's a **cognitive memory substrate** that learn
 - [SDK Examples](api/sdk-examples/) 🚧
 
 ### Development
+- [Contributing Guide](CONTRIBUTING.md) ✅
+- [Development Roadmap](TODO.md) ✅
 - [Development Setup](development/getting-started.md) 🚧
 - [Code Organization](development/code-organization.md) ✅
 - [Testing Guide](development/testing-guide.md) 🚧
@@ -162,16 +183,46 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 - **Learning**: 80%+ accuracy in access pattern prediction
 - **Efficiency**: 85%+ parallel scaling efficiency up to 1000 nodes
 
+## Contributing
+
+We welcome contributions from developers, mathematicians, researchers, and anyone passionate about building the future of cognitive memory systems!
+
+**Ways to Contribute:**
+- Implement mathematical modules (RPI, PGM, KCE, Bellman)
+- Write documentation and tutorials
+- Create tests and benchmarks
+- Propose research ideas and algorithms
+- Help with community support
+
+See our [Contributing Guide](CONTRIBUTING.md) for detailed information on how to get started.
+
 ## Community & Support
 
-- **GitHub**: [phenix-db/phenix-db](https://github.com/phenix-db/phenix-db)
+- **GitHub**: [mhassan72/Phenix-DB](https://github.com/mhassan72/Phenix-DB)
 - **Documentation**: This site
-- **Issues**: [GitHub Issues](https://github.com/phenix-db/phenix-db/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/phenix-db/phenix-db/discussions)
+- **Issues**: [GitHub Issues](https://github.com/mhassan72/Phenix-DB/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/mhassan72/Phenix-DB/discussions)
+- **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## Project Resources
+
+- **Development Roadmap**: [TODO.md](TODO.md)
+- **Vision Documents**: [docs/phenix-db/](phenix-db/)
+- **Architecture Docs**: [docs/architecture/](architecture/)
+
+## Ethical Directive
+
+This project is open-source for the advancement of human knowledge. Data systems of the future must be transparent, auditable, and fair. Phenix-DB will never hide its memory structure or bias. It is designed to serve collective intelligence, not replace it.
 
 ## License
 
-Phenix DB is licensed under the Apache License 2.0. See [LICENSE](../LICENSE) for details.
+Phenix-DB is open-source. See [LICENSE](../LICENSE) for details.
+
+---
+
+**"True intelligence begins with memory."**
+
+Phenix-DB is humanity's step toward computational remembrance. A system born from mathematics — for understanding, not storage.
 
 ---
 
