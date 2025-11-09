@@ -86,14 +86,6 @@ The project structure has been initialized with:
 - ✅ Feature flags for optional components
 - ⏳ Component implementations (in progress)
 
-See `.kiro/specs/phenix-vision-refactor/tasks.md` for the complete implementation plan.
-
-## Documentation
-
-- [Requirements](../.kiro/specs/phenix-vision-refactor/requirements.md)
-- [Design](../.kiro/specs/phenix-vision-refactor/design.md)
-- [Implementation Plan](../.kiro/specs/phenix-vision-refactor/tasks.md)
-- [Project Manifesto](../docs/phenix-db/manifesto.txt)
 
 ## License
 
