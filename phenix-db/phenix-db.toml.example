@@ -1,0 +1,151 @@
+# Phenix-DB Configuration Example
+# Copy this file to phenix-db.toml and adjust values as needed
+
+[polynomial_index]
+# Polynomial degree for embeddings (default: 5)
+degree = 5
+
+# Branching factor for tree structure (default: 16)
+branching_factor = 16
+
+# Precision tolerance for polynomial evaluation (default: 0.00001)
+precision_tolerance = 0.00001
+
+[probabilistic_graph]
+# Learning rate for weight updates (default: 0.1)
+learning_rate = 0.1
+
+# Pruning threshold for low-probability edges (default: 0.01)
+pruning_threshold = 0.01
+
+# Co-access time window in milliseconds (default: 100)
+co_access_window_ms = 100
+
+# Normalization interval in seconds (default: 10)
+normalization_interval_sec = 10
+
+[bellman_optimizer]
+# Observation window size for access patterns (default: 1000)
+observation_window = 1000
+
+# Restructure threshold multiplier (default: 1.5)
+restructure_threshold = 1.5
+
+# Update interval in seconds (default: 10)
+update_interval_sec = 10
+
+# Discount factor for dynamic programming (default: 0.95)
+discount_factor = 0.95
+
+[compression]
+# Target compression ratio (default: 0.8 = 80%)
+target_ratio = 0.8
+
+# Maximum decompression time in milliseconds (default: 5)
+max_decompression_ms = 5
+
+# Minimum pattern frequency for dictionary (default: 100)
+min_pattern_frequency = 100
+
+# Ramanujan series degree (default: 10)
+ramanujan_series_degree = 10
+
+[learning]
+# Convergence threshold for learning algorithms (default: 0.001)
+convergence_threshold = 0.001
+
+# Sample window size (default: 1000)
+sample_window = 1000
+
+# Minimum prediction accuracy (default: 0.75)
+min_accuracy = 0.75
+
+# Maximum CPU overhead for learning (default: 0.05 = 5%)
+max_cpu_overhead = 0.05
+
+[tiering]
+# Hot tier promotion threshold in accesses/hour (default: 100.0)
+hot_promotion_threshold = 100.0
+
+# Warm tier promotion threshold in accesses/hour (default: 10.0)
+warm_promotion_threshold = 10.0
+
+# Hot tier demotion threshold in accesses/hour (default: 1.0)
+hot_demotion_threshold = 1.0
+
+# Warm tier demotion threshold in accesses/hour (default: 0.1)
+warm_demotion_threshold = 0.1
+
+# Hot tier demotion period in hours (default: 24)
+hot_demotion_period_hours = 24
+
+# Warm tier demotion period in days (default: 7)
+warm_demotion_period_days = 7
+
+[distributed]
+# Minimum number of replicas (default: 3)
+min_replicas = 3
+
+# Maximum number of replicas (default: 10)
+max_replicas = 10
+
+# Awareness percentage of global state (default: 0.1 = 10%)
+awareness_percentage = 0.1
+
+# Consensus timeout in seconds (default: 5)
+consensus_timeout_sec = 5
+
+# Heartbeat interval in milliseconds (default: 500)
+heartbeat_interval_ms = 500
+
+[server]
+# gRPC server address
+grpc_address = "0.0.0.0:50051"
+
+# REST API address
+rest_address = "0.0.0.0:8080"
+
+# Metrics endpoint address
+metrics_address = "0.0.0.0:9090"
+
+[storage]
+# Hot tier storage path
+hot_tier_path = "/data/hot"
+
+# Warm tier storage path
+warm_tier_path = "/data/warm"
+
+# Cold tier storage path (or object storage URL)
+cold_tier_path = "/data/cold"
+
+# WAL directory
+wal_path = "/data/wal"
+
+[security]
+# Enable TLS
+enable_tls = true
+
+# TLS certificate path
+tls_cert_path = "/etc/phenix-db/certs/server.crt"
+
+# TLS key path
+tls_key_path = "/etc/phenix-db/certs/server.key"
+
+# Enable encryption at rest
+enable_encryption_at_rest = true
+
+# KMS endpoint (if using external KMS)
+# kms_endpoint = "https://kms.example.com"
+
+[observability]
+# Log level (trace, debug, info, warn, error)
+log_level = "info"
+
+# Enable JSON logging
+json_logging = true
+
+# OpenTelemetry endpoint
+# otel_endpoint = "http://localhost:4317"
+
+# Enable Prometheus metrics
+enable_metrics = true
