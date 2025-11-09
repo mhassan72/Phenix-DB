@@ -1,151 +1,269 @@
-# Phenix-DB Configuration Example
-# Copy this file to phenix-db.toml and adjust values as needed
+# Phenix-DB Configuration File
+# 
+# This is an example configuration file for Phenix-DB.
+# Copy this file to phenix-db.toml and customize for your deployment.
+#
+# All parameters have sensible defaults. Only override what you need.
+# Configuration can also be set via environment variables with prefix PHENIX_DB_
 
-[polynomial_index]
-# Polynomial degree for embeddings (default: 5)
+# =============================================================================
+# Polynomial Index Configuration
+# =============================================================================
+# Controls Recursive Polynomial Index (RPI) behavior
+# Mathematical foundation: Al-Karaji polynomial algebra, Euler evaluation
+
+[polynomial]
+# Polynomial degree (default: 5)
+# Higher degrees provide more precision but increase computation cost
 degree = 5
 
-# Branching factor for tree structure (default: 16)
+# Branching factor for polynomial tree (default: 16)
+# Controls tree width vs depth tradeoff
 branching_factor = 16
 
+# Maximum tree depth (default: 20)
+max_depth = 20
+
+# Node capacity before splitting (default: 100)
+node_capacity = 100
+
 # Precision tolerance for polynomial evaluation (default: 0.00001)
+# Maximum acceptable error in polynomial computations
 precision_tolerance = 0.00001
 
-[probabilistic_graph]
-# Learning rate for weight updates (default: 0.1)
+# =============================================================================
+# Probabilistic Graph Memory Configuration
+# =============================================================================
+# Controls PGM edge weight learning and pruning
+# Mathematical foundation: Kolmogorov probability theory
+
+[pgm]
+# Learning rate for edge weight updates (default: 0.1)
+# Controls how quickly edge weights adapt to access patterns
 learning_rate = 0.1
 
 # Pruning threshold for low-probability edges (default: 0.01)
+# Edges below this probability are removed after inactivity period
 pruning_threshold = 0.01
 
 # Co-access time window in milliseconds (default: 100)
+# Entities accessed within this window are considered co-accessed
 co_access_window_ms = 100
 
 # Normalization interval in seconds (default: 10)
-normalization_interval_sec = 10
+# How often to renormalize probability distributions (Σp = 1.0)
+normalization_interval_secs = 10
 
-[bellman_optimizer]
-# Observation window size for access patterns (default: 1000)
+# Inactivity period for pruning in days (default: 30)
+# Edges inactive for this period are candidates for pruning
+inactivity_period_days = 30
+
+# Probability sum tolerance (default: 0.001)
+# Maximum acceptable deviation from Σp = 1.0
+probability_tolerance = 0.001
+
+
+# =============================================================================
+# Bellman Optimizer Configuration
+# =============================================================================
+# Controls dynamic path optimization and restructuring
+# Mathematical foundation: Bellman's dynamic programming
+
+[bellman]
+# Observation window size (default: 1000 queries)
+# Number of queries to observe before computing optimal paths
 observation_window = 1000
 
 # Restructure threshold multiplier (default: 1.5)
+# Trigger restructuring when cost exceeds this multiple of minimum
 restructure_threshold = 1.5
 
 # Update interval in seconds (default: 10)
-update_interval_sec = 10
+# How often to recompute optimal paths
+update_interval_secs = 10
 
-# Discount factor for dynamic programming (default: 0.95)
+# Restructure timeout in seconds (default: 60)
+# Maximum time allowed for restructuring operations
+restructure_timeout_secs = 60
+
+# Discount factor for Bellman equation (default: 0.95)
+# Controls weight of future costs vs immediate costs
 discount_factor = 0.95
 
+# Cost weights for optimization
+[bellman.cost_weights]
+# Weight for latency cost (default: 1.0)
+latency = 1.0
+
+# Weight for memory access cost (default: 0.5)
+memory = 0.5
+
+# Weight for disk I/O cost (default: 2.0)
+io = 2.0
+
+# =============================================================================
+# Compression Engine Configuration
+# =============================================================================
+# Controls Kolmogorov Compression Engine (KCE) behavior
+# Mathematical foundation: Ramanujan series, Kolmogorov complexity
+
 [compression]
-# Target compression ratio (default: 0.8 = 80%)
-target_ratio = 0.8
-
-# Maximum decompression time in milliseconds (default: 5)
-max_decompression_ms = 5
-
-# Minimum pattern frequency for dictionary (default: 100)
+# Minimum pattern frequency for dictionary (default: 100 entities)
+# Patterns must appear in at least this many entities to be added to dictionary
 min_pattern_frequency = 100
 
+# Target compression ratio (default: 0.8 = 80%)
+# Desired ratio of compressed_size / original_size
+target_compression_ratio = 0.8
+
+# Maximum decompression time in milliseconds (default: 5)
+# Decompression must complete within this time
+max_decompression_time_ms = 5
+
 # Ramanujan series degree (default: 10)
-ramanujan_series_degree = 10
+# Degree of Ramanujan series for compression
+ramanujan_degree = 10
+
+# Dictionary size limit (default: 10000 patterns)
+# Maximum number of patterns in shared dictionary
+dictionary_size_limit = 10000
+
+# Minimum information density (default: 0.85 bits/byte)
+# Minimum acceptable information density after compression
+min_information_density = 0.85
+
+
+# =============================================================================
+# Adaptive Learning Configuration
+# =============================================================================
+# Controls learning engine behavior and convergence
+# Mathematical foundation: PAC-learning, Ibn al-Haytham feedback
 
 [learning]
-# Convergence threshold for learning algorithms (default: 0.001)
+# Learning rate (default: 0.1)
+# Controls how quickly the system adapts to new patterns
+learning_rate = 0.1
+
+# Convergence threshold (default: 0.001)
+# Learning is considered converged when error < threshold
 convergence_threshold = 0.001
 
-# Sample window size (default: 1000)
+# Sample window size (default: 1000 queries)
+# Number of queries to observe for learning
 sample_window = 1000
 
-# Minimum prediction accuracy (default: 0.75)
-min_accuracy = 0.75
+# Minimum prediction accuracy (default: 0.8 = 80%)
+# Target accuracy for access predictions
+min_prediction_accuracy = 0.8
 
-# Maximum CPU overhead for learning (default: 0.05 = 5%)
+# Maximum CPU overhead (default: 0.05 = 5%)
+# Learning should consume at most this fraction of CPU
 max_cpu_overhead = 0.05
 
+# Feedback interval in seconds (default: 60)
+# How often to adjust parameters based on feedback
+feedback_interval_secs = 60
+
+# =============================================================================
+# Memory Tiering Configuration
+# =============================================================================
+# Controls hierarchical memory tier behavior
+# Three-tier architecture: Hot (RAM/NVMe) / Warm (NVMe/SSD) / Cold (Object Storage)
+
 [tiering]
-# Hot tier promotion threshold in accesses/hour (default: 100.0)
+# Hot tier promotion threshold (accesses/hour, default: 100.0)
+# Entities exceeding this frequency are promoted to hot tier
 hot_promotion_threshold = 100.0
 
-# Warm tier promotion threshold in accesses/hour (default: 10.0)
+# Warm tier promotion threshold (accesses/hour, default: 10.0)
+# Entities exceeding this frequency are promoted to warm tier
 warm_promotion_threshold = 10.0
 
-# Hot tier demotion threshold in accesses/hour (default: 1.0)
+# Hot tier demotion threshold (accesses/hour, default: 1.0)
+# Entities below this frequency are demoted from hot tier
 hot_demotion_threshold = 1.0
 
-# Warm tier demotion threshold in accesses/hour (default: 0.1)
+# Warm tier demotion threshold (accesses/hour, default: 0.1)
+# Entities below this frequency are demoted from warm tier
 warm_demotion_threshold = 0.1
 
 # Hot tier demotion period in hours (default: 24)
+# Time below threshold before demotion from hot tier
 hot_demotion_period_hours = 24
 
-# Warm tier demotion period in days (default: 7)
-warm_demotion_period_days = 7
+# Warm tier demotion period in hours (default: 168 = 7 days)
+# Time below threshold before demotion from warm tier
+warm_demotion_period_hours = 168
+
+# Hot tier size percentage (default: 0.1 = 10%)
+# Target percentage of data in hot tier
+hot_tier_size_pct = 0.1
+
+# Warm tier size percentage (default: 0.3 = 30%)
+# Target percentage of data in warm tier
+warm_tier_size_pct = 0.3
+
+
+# =============================================================================
+# Distributed Consciousness Configuration
+# =============================================================================
+# Controls distributed system behavior and consensus
+# Mathematical foundation: Entropy-driven convergence, probabilistic routing
 
 [distributed]
-# Minimum number of replicas (default: 3)
-min_replicas = 3
+# Global awareness percentage (default: 0.1 = 10%)
+# Percentage of global entity distribution each node samples
+global_awareness_pct = 0.1
 
-# Maximum number of replicas (default: 10)
-max_replicas = 10
+# Cluster join timeout in seconds (default: 30)
+# Maximum time allowed for node to join cluster
+cluster_join_timeout_secs = 30
 
-# Awareness percentage of global state (default: 0.1 = 10%)
-awareness_percentage = 0.1
+# Routing accuracy target (default: 0.9 = 90%)
+# Target accuracy for query routing decisions
+routing_accuracy_target = 0.9
 
-# Consensus timeout in seconds (default: 5)
-consensus_timeout_sec = 5
+# Entropy convergence epsilon (default: 0.001)
+# Consensus achieved when |H_i - H_j| < epsilon
+entropy_convergence_epsilon = 0.001
 
 # Heartbeat interval in milliseconds (default: 500)
+# How often nodes send heartbeats
 heartbeat_interval_ms = 500
 
-[server]
-# gRPC server address
-grpc_address = "0.0.0.0:50051"
+# Node failure timeout in milliseconds (default: 1500)
+# Time without heartbeat before node considered failed
+node_failure_timeout_ms = 1500
 
-# REST API address
-rest_address = "0.0.0.0:8080"
+# Cross-datacenter latency threshold in milliseconds (default: 100)
+# Latency above this triggers routing optimization
+cross_dc_latency_threshold_ms = 100
 
-# Metrics endpoint address
-metrics_address = "0.0.0.0:9090"
+# Minimum replicas (default: 3)
+# Minimum number of replicas for each entity
+min_replicas = 3
 
-[storage]
-# Hot tier storage path
-hot_tier_path = "/data/hot"
+# Maximum replicas (default: 10)
+# Maximum number of replicas for each entity
+max_replicas = 10
 
-# Warm tier storage path
-warm_tier_path = "/data/warm"
+# Consistency level (default: "EventualConsistency")
+# Options: "Strong", "EventualConsistency", "Causal"
+consistency_level = "EventualConsistency"
 
-# Cold tier storage path (or object storage URL)
-cold_tier_path = "/data/cold"
-
-# WAL directory
-wal_path = "/data/wal"
-
-[security]
-# Enable TLS
-enable_tls = true
-
-# TLS certificate path
-tls_cert_path = "/etc/phenix-db/certs/server.crt"
-
-# TLS key path
-tls_key_path = "/etc/phenix-db/certs/server.key"
-
-# Enable encryption at rest
-enable_encryption_at_rest = true
-
-# KMS endpoint (if using external KMS)
-# kms_endpoint = "https://kms.example.com"
-
-[observability]
-# Log level (trace, debug, info, warn, error)
-log_level = "info"
-
-# Enable JSON logging
-json_logging = true
-
-# OpenTelemetry endpoint
-# otel_endpoint = "http://localhost:4317"
-
-# Enable Prometheus metrics
-enable_metrics = true
+# =============================================================================
+# Environment Variable Overrides
+# =============================================================================
+# All configuration parameters can be overridden via environment variables
+# with the prefix PHENIX_DB_
+#
+# Examples:
+#   PHENIX_DB_POLYNOMIAL_DEGREE=7
+#   PHENIX_DB_PGM_LEARNING_RATE=0.15
+#   PHENIX_DB_BELLMAN_DISCOUNT_FACTOR=0.9
+#   PHENIX_DB_COMPRESSION_TARGET_COMPRESSION_RATIO=0.75
+#   PHENIX_DB_LEARNING_MIN_PREDICTION_ACCURACY=0.85
+#   PHENIX_DB_TIERING_HOT_PROMOTION_THRESHOLD=150.0
+#   PHENIX_DB_DISTRIBUTED_MIN_REPLICAS=5
+#
+# Environment variables take precedence over file-based configuration.

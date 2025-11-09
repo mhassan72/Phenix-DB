@@ -17,6 +17,7 @@ pub mod metadata;
 pub mod transaction;
 pub mod mvcc;
 pub mod query;
+pub mod config;
 
 // Re-export commonly used types
 pub use entity::{Entity, MemoryTier, AccessStatistics};
@@ -24,3 +25,4 @@ pub use vector::Vector;
 pub use edges::Edge;
 pub use types::{EntityId, NodeId, ShardId, ClusterId};
 pub use error::{Result, MemorySubstrateError};
+pub use config::PhenixConfig;
